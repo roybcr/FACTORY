@@ -14,7 +14,7 @@ namespace FACTORY.Models
         public user Login( user u )
         {
 
-            var usr = db.users.Where(( x ) => x.username == u.username && x.password == u.password).First();
+            var usr = db.users.FirstOrDefault(( x ) => x.username == u.username && x.password == u.password);
 
             if ( usr != null )
             {
