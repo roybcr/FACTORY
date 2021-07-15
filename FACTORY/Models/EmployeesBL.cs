@@ -25,7 +25,7 @@ namespace FACTORY.Models
         public ExtendedEmployee GetEmployee( int uid, int eid )
         {
 
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
 
                 var employee = db.employees.Where(e => e.ID == eid).First();
@@ -53,7 +53,7 @@ namespace FACTORY.Models
         {
             List<ExtendedEmployee> extList = new List<ExtendedEmployee>();
 
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
                 foreach ( var e in db.employees )
                 {
@@ -82,7 +82,7 @@ namespace FACTORY.Models
 
         public employee EditEmployee( int uid, int eid, employee emp )
         {
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
 
                 var newEmp = db.employees.Where(e => e.ID == eid).First();
@@ -121,7 +121,7 @@ namespace FACTORY.Models
         public bool DeleteEmployee( int uid, int eid )
         {
 
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
                 var shiftsOfEmployee = db.employees_shifts.Where(eXs => eXs.EmployeeID == eid).ToList();
                 foreach ( var sid in shiftsOfEmployee )
@@ -152,7 +152,7 @@ namespace FACTORY.Models
 
         public employee AddEmployee( int uid, employee emp )
         {
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
 
                 employee newEmp = new employee();

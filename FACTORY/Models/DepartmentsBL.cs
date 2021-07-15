@@ -15,7 +15,7 @@ namespace FACTORY.Models
         public List<ExtendedDepartment> GetDepartments( int uid )
         {
 
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
 
                 var departmentList = db.departments.ToArray();
@@ -47,7 +47,7 @@ namespace FACTORY.Models
 
         public department GetDepartment(int uid, int did)
         {
-            if(bl.UserHasActionsLeft(uid))
+            if(bl.ReduceOneActionIfAuthorized(uid))
             {
                 var dep = db.departments.FirstOrDefault(d => d.ID == did);
                 return dep;
@@ -60,7 +60,7 @@ namespace FACTORY.Models
         public department EditDepartment( int uid, int did, department dep )
         {
 
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
 
                 var currDep = db.departments.FirstOrDefault(d => d.ID == did);
@@ -93,7 +93,7 @@ namespace FACTORY.Models
 
         public Boolean DeleteDepartment( int uid, int did )
         {
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
                 var currDep = db.departments.FirstOrDefault(( x ) => x.ID == did);
                 if ( currDep != null )
@@ -120,7 +120,7 @@ namespace FACTORY.Models
 
         public department CreateDepartment( int uid, department dep )
         {
-            if ( bl.UserHasActionsLeft(uid) )
+            if ( bl.ReduceOneActionIfAuthorized(uid) )
             {
                 {
                     db.departments.Add(dep);

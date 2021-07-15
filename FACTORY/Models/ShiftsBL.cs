@@ -14,7 +14,7 @@ namespace FACTORY.Models
 		{
 			List<ExtendedShift> extended_shift_list = new List<ExtendedShift>();
 
-			if ( bl.UserHasActionsLeft(uid) )
+			if ( bl.ReduceOneActionIfAuthorized(uid) )
 			{
 				foreach ( var shft in db.shifts )
 				{
@@ -45,7 +45,7 @@ namespace FACTORY.Models
 
 		public shift AddShift( int uid, shift s )
 		{
-			if ( bl.UserHasActionsLeft(uid) )
+			if ( bl.ReduceOneActionIfAuthorized(uid) )
 			{
 
 				shift shft = new shift();
@@ -64,7 +64,7 @@ namespace FACTORY.Models
 
 		public employees_shifts CreateShiftForEmployee( int uid, int eid, shift s )
 		{
-			if ( bl.UserHasActionsLeft(uid) )
+			if ( bl.ReduceOneActionIfAuthorized(uid) )
 			{
 
 				var shft = new shift();
